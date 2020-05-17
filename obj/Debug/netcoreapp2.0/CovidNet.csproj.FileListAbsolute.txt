@@ -1,0 +1,16 @@
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\obj\Debug\netcoreapp2.0\CovidNet.csproj.CoreCompileInputs.cache
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\obj\Debug\netcoreapp2.0\CovidNet.AssemblyInfoInputs.cache
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\obj\Debug\netcoreapp2.0\CovidNet.AssemblyInfo.cs
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\bin\Debug\netcoreapp2.0\appsettings.Development.json
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\bin\Debug\netcoreapp2.0\bundleconfig.json
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\bin\Debug\netcoreapp2.0\appsettings.json
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\bin\Debug\netcoreapp2.0\Properties\launchSettings.json
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\bin\Debug\netcoreapp2.0\CovidNet.deps.json
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\bin\Debug\netcoreapp2.0\CovidNet.runtimeconfig.json
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\bin\Debug\netcoreapp2.0\CovidNet.runtimeconfig.dev.json
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\bin\Debug\netcoreapp2.0\CovidNet.dll
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\bin\Debug\netcoreapp2.0\CovidNet.pdb
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\obj\Debug\netcoreapp2.0\CovidNet.dll
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\obj\Debug\netcoreapp2.0\CovidNet.pdb
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\obj\Debug\netcoreapp2.0\CovidNet.genruntimeconfig.cache
+C:\1blerand\Asp.Net-Core-Inventory-Order-Management-System-master\Asp.Net-Core-Inventory-Order-Management-System-master\coderush\obj\Debug\netcoreapp2.0\CovidNet.csprojAssemblyReference.cache

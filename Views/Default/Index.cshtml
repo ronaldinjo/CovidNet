@@ -1,0 +1,213 @@
+﻿@model CovidNet.Models.ViewModel.SearchViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="myclass">
+    <div class="row top_tiles">
+        <div class="animated bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
+                <div class="count patients"></div>
+                <h3>Total Patients 1295</h3>
+                <p class="count_bottom"><i class="green todayspatients"> </i>Patient Today 35</p>
+            </div>
+        </div>
+        <div class="animeted bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+        </div>
+        <div class="animated  bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-comments-o"></i></div>
+                <div class="count appointments"></div>
+                <h3>Total Cases 1295</h3>
+                <p class="count_bottom"><i class="green todaysappointments"> </i> Cases Today 27</p>
+            </div>
+        </div>
+        <div class="animated  bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-comments-o"></i></div>
+                <div class="count appointments"></div>
+                <h3>Cured 1200</h3>
+
+            </div>
+        </div>
+        <div class="animated  bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+                <div class="icon"><i class="fa fa-comments-o"></i></div>
+                <div class="count appointments"></div>
+                <h3>Total Death 95</h3>
+
+            </div>
+        </div>
+        <div class=" animated bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+        </div>
+
+    </div>
+</div>
+
+@section Styles{
+
+}
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $(function () {
+
+            var dataManager = ej.DataManager({
+                url: "/api/Patient",
+                adaptor: new ej.WebApiAdaptor(),
+                offline: true
+            });
+
+
+
+            var dataManagerState = ej.DataManager({
+                url: "/api/State",
+                adaptor: new ej.WebApiAdaptor()
+            });
+
+            dataManager.ready.done(function (e) {
+                $("#Grid").ejGrid({
+                    dataSource: ej.DataManager({
+                        json: e.result,
+                        adaptor: new ej.remoteSaveAdaptor(),
+
+                    }),
+                    toolbarSettings: {
+                        showToolbar: false,
+                        toolbarItems: ["add", "edit", "delete", "update", "cancel", "search", "printGrid"]
+                    },
+                    editSettings: {
+                        allowEditing: false,
+                        allowAdding: false,
+                        allowDeleting: false,
+                        showDeleteConfirmDialog: false,
+                        editMode: "dialog"
+                    },
+                    isResponsive: true,
+                    enableResponsiveRow: true,
+                    allowSorting: true,
+                    allowSearching: true,
+                    allowFiltering: true,
+                    filterSettings: {
+                        filterType: "excel",
+                        maxFilterChoices: 100,
+                        enableCaseSensitivity: false
+                    },
+                    allowPaging: true,
+                    pageSettings: { pageSize: 10, printMode: ej.Grid.PrintMode.CurrentPage },
+                    columns: [
+                        { field: "PatientId", headerText: 'Patient', isPrimaryKey: true, isIdentity: true, visible: false },
+                        { field: "PatientName", headerText: 'Patient#', allowEditing: false },
+                        { field: "isCorona", headerText: 'isCorona#', allowEditing: false },
+                        { field: "Status", headerText: 'Status#', allowEditing: false },
+                        { field: "DateRegistered", headerText: 'Registered Date', editType: "datepicker", format: "{0:MM/dd/yyyy}", validationRules: { required: true }, validationRules: { required: true } },
+
+                        { field: "StateId", headerText: 'State', foreignKeyField: "StateId", foreignKeyValue: "StateName", dataSource: dataManagerState },
+                    ],
+                    actionComplete: "complete",
+                });
+            });
+
+
+        });
+
+        function complete(args) {
+            if (args.requestType == 'beginedit') {
+                $("#" + this._id + "_dialogEdit").ejDialog({ title: "Edit Record" });
+            }
+            if (args.requestType == 'beginedit' || args.requestType == 'add') {
+
+                var selectedValue = parseInt(selected.option('value'));
+                var selectedText = selected.option('text');
+
+
+            }
+        }
+
+
+    </script>
+}
+
+
+<form asp-controller="Patients" asp-action="Index" method="get">
+    <p>
+        <fieldset>
+            State<select id="States" name="Model.States">
+                <option value=""></option>
+                <option value="NM">North Macedonia</option>
+                <option value="ALB">Albania</option>
+                <option value="KS">Kosovo</option>
+                <option value="US">US</option>
+                <option value="IT">Italy</option>
+                <option value="RestOfWorld">RestOfWorld</option>
+            </select>
+
+
+
+
+            Patient Name: <input type="text" asp-for="SearchString" />
+            <input type="submit" value="Search" />
+        </fieldset>
+    </p>
+</form>
+
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Patients[0].PatientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patients[0].PatientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patients[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patients[0].isCorona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patients[0].DateRegistered)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Patients[0].State.StateName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Patients)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isCorona)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRegistered)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State.StateName)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

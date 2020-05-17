@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard Main";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <div class="myclass">
+        <div class="row top_tiles">
+            <div class="animated bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
+                    <div class="count patients"></div>
+                    <h3>Total Patients 1295</h3>
+                    <p class="count_bottom"><i class="green todayspatients"> </i>Patient Today 35</p>
+                </div>
+            </div>
+            <div class="animeted bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+            </div>
+            <div class="animated  bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-comments-o"></i></div>
+                    <div class="count appointments"></div>
+                    <h3>Total Cases 1295</h3>
+                    <p class="count_bottom"><i class="green todaysappointments"> </i> Cases Today 27</p>
+                </div>
+            </div>
+            <div class="animated  bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-comments-o"></i></div>
+                    <div class="count appointments"></div>
+                    <h3>Cured 1200</h3>
+
+                </div>
+            </div>
+            <div class="animated  bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="tile-stats">
+                    <div class="icon"><i class="fa fa-comments-o"></i></div>
+                    <div class="count appointments"></div>
+                    <h3>Total Death 95</h3>
+
+                </div>
+            </div>
+            <div class=" animated bg-gradient-blue card col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title text-primary"><i class="fa fa-certificate"></i> @ViewData["Title"]</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                            title="Collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div id="Grid"></div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+
+            </div>
+            <!-- /.box-footer-->
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Styles{
+
+}
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $(function () {
+
+            var dataManager = ej.DataManager({
+                url: "/api/Patient",
+                adaptor: new ej.WebApiAdaptor(),
+                offline: true
+            });
+
+
+
+            var dataManagerState = ej.DataManager({
+                url: "/api/State",
+                adaptor: new ej.WebApiAdaptor()
+            });
+
+            dataManager.ready.done(function (e) {
+                $("#Grid").ejGrid({
+                    dataSource: ej.DataManager({
+                        json: e.result,
+                        adaptor: new ej.remoteSaveAdaptor(),
+                        insertUrl: "/api/Patient/Insert",
+                        updateUrl: "/api/Patient/Update",
+                        removeUrl: "/api/Patient/Remove",
+                    }),
+                    toolbarSettings: {
+                        showToolbar: true,
+                        toolbarItems: ["add", "edit", "delete", "update", "cancel", "search", "printGrid"]
+                    },
+                    editSettings: {
+                        allowEditing: true,
+                        allowAdding: true,
+                        allowDeleting: true,
+                        showDeleteConfirmDialog: true,
+                        editMode: "dialog"
+                    },
+                    isResponsive: true,
+                    enableResponsiveRow: true,
+                    allowSorting: true,
+                    allowSearching: true,
+                    allowFiltering: true,
+                    filterSettings: {
+                        filterType: "excel",
+                        maxFilterChoices: 100,
+                        enableCaseSensitivity: false
+                    },
+                    allowPaging: true,
+                    pageSettings: { pageSize: 10, printMode: ej.Grid.PrintMode.CurrentPage },
+                    columns: [
+                        { field: "PatientId", headerText: 'Patient', isPrimaryKey: true, isIdentity: true, visible: false },
+                        { field: "PatientName", headerText: 'Patient#', allowEditing: false },
+                        { field: "isCorona", headerText: 'isCorona#', allowEditing: false },
+                        { field: "Status", headerText: 'Status#', allowEditing: false },
+                        { field: "DateRegistered", headerText: 'Registered Date', editType: "datepicker", format: "{0:MM/dd/yyyy}", validationRules: { required: true }, validationRules: { required: true } },
+
+                        { field: "StateId", headerText: 'State', foreignKeyField: "StateId", foreignKeyValue: "StateName", dataSource: dataManagerState },
+                    ],
+                    actionComplete: "complete",
+                });
+            });
+
+
+        });
+
+        function complete(args) {
+            if (args.requestType == 'beginedit') {
+                $("#" + this._id + "_dialogEdit").ejDialog({ title: "Edit Record" });
+            }
+            if (args.requestType == 'beginedit' || args.requestType == 'add') {
+             
+                var selectedValue = parseInt(selected.option('value'));
+                var selectedText = selected.option('text');
+               
+
+            }
+        }
+
+
+    </script>
+}
+
+
+
